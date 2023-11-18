@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Форма регистрации</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+	<link rel="stylesheet" href="css/style.css"> </head>
+
+<body class="wrapper">
+	<header class="header wrapper__header"></header>
+    <main class="main flex-container">
+        <form class="registration-form" id="registrationForm">
+            <div class="registration-form__field">
+                <h3 class="registration-form__title">Регистрация/Вход</h3>
+            </div>
+
+            <div class="registration-form__field">
+               <label for="email" class="registration-form__label">
+                E-mail: <span class="registration-form__required-mark">*</span>
+               </label>
+               <input type="email" id="email" name="email" class="registration-form__input" placeholder="Введите ваш e-mail"> <!--required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="100" autocomplete="email"-->
+               <div id="emailError" class="form-control__error"></div>
+            </div>
+
+            <div class="registration-form__field">
+                <label for="fullName" class="registration-form__label">
+                    ФИО: <span class="registration-form__required-mark">*</span>
+                </label>
+                <input type="text" id="fullName" name="fullName" class="registration-form__input" placeholder="Введите ваше полное имя" ><!--required minlength="3" maxlength="150" autocomplete="name">-->
+                <div id="fullNameError" class="form-control__error"></div>
+            </div>
+            
+            <div class="registration-form__field">
+                <label for="password" class="registration-form__label">
+                    Пароль: <span class="registration-form__required-mark">*</span>
+                </label>
+                <input type="password" id="password" name="password" class="registration-form__input" placeholder="Введите ваш пароль"><!--required minlength="8" maxlength="30" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">-->
+                <div id="PasswordError" class="form-control__error"></div>
+            </div>
+            
+            <div class="registration-form__field">
+                <label for="confirmPassword" class="registration-form__label">
+                    Подтверждение пароля: <span class="registration-form__required-mark">*</span>
+                </label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="registration-form__input" placeholder="Подтвердите ваш пароль" required>
+                <div id="confirmPasswordError" class="form-control__error"></div>
+            </div>
+            
+            <div class="registration-form__field">
+                <label for="agree" class="registration-form__label">
+            Я подтверждаю, что хочу зарегистрироваться: <span class="registration-form__required-mark">*</span>
+                </label>
+            <input type="checkbox" id="agree" name="agree" class="registration-form__checkbox" required>
+                <span class="checkbox-view">
+                    <img class="checkbox-icon" src="./images/icon1.png" alt="checkbox icon">
+                </span>
+            <div id="agreeError" class="form-control__error"></div>
+                <button type="submit" class="registration-form__submit">Отправить</button>
+            </div>  
+        </form>
+	</main>
+	<footer class="footer"></footer>
+	<script src="js/validation.js"></script>
+</body>
+
+</html>
