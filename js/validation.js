@@ -18,17 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let passwordError = createErrorElement(password);
     let confirmPasswordError = createErrorElement(confirmPassword);
  
-    let isValid = true;
+    let isValid = validateEmail(email, emailError);
+    isValid = validateFullName(fullName, fullNameError) && isValid;
+    isValid = validatePassword(password, passwordError) && isValid;
+    isValid = validateConfirmPassword(password, confirmPassword, confirmPasswordError) && isValid;
  
     if (email.value === '' || fullName.value === '' || password.value === '' || confirmPassword.value === '') {
         alert('Заполните все поля');
         isValid = false;
     }
- 
-    validateEmail(email, emailError, isValid);
-    validateFullName(fullName, fullNameError, isValid);
-    validatePassword(password, passwordError, isValid);
-    validateConfirmPassword(password, confirmPassword, confirmPasswordError, isValid);
  
     if (isValid) {
         localStorage.setItem('email', email.value);
@@ -58,7 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
     return errorElement;
  }
  
- function validateEmail(email, emailError, isValid) {
+ function validateEmail(email, emailError) {
+    let isValid = true;
     if (!email.validity.valid) {
         emailError.textContent = 'Некорректный email';
         emailError.style.display = 'block';
@@ -67,10 +66,12 @@ document.addEventListener('DOMContentLoaded', function() {
         emailError.textContent = '';
         emailError.style.display = 'none';
     }
+    return isValid;
  }
  
- function validateFullName(fullName, fullNameError, isValid) {
-    if (!fullName.validity.valid) {
+ function validateFullName(fullName, fullNameError) {
+    let isValid = true;
+    if (fullName.value.length < 3) {
         fullNameError.textContent = 'Минимально допустимый размер ФИО 3 символа Максимально допустимый размер ФИО 150 символов';
         fullNameError.style.display = 'block';
         isValid = false;
@@ -78,9 +79,11 @@ document.addEventListener('DOMContentLoaded', function() {
         fullNameError.textContent = '';
         fullNameError.style.display = 'none';
     }
+    return isValid;
  }
  
- function validatePassword(password, passwordError, isValid) {
+ function validatePassword(password, passwordError) {
+    let isValid = true;
     if (!password.validity.valid || !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&]).{8,}$/.test(password.value)) {
         passwordError.textContent = 'Пароль должен содержать как минимум 8 символов, включая одну цифру, одну строчную букву, одну прописную букву и один специальный символ';
         passwordError.style.display = 'block';
@@ -89,9 +92,11 @@ document.addEventListener('DOMContentLoaded', function() {
         passwordError.textContent = '';
         passwordError.style.display = 'none';
     }
+    return isValid;
  }
  
- function validateConfirmPassword(password, confirmPassword, confirmPasswordError, isValid) {
+ function validateConfirmPassword(password, confirmPassword, confirmPasswordError) {
+    let isValid = true;
     if (password.value !== confirmPassword.value) {
         confirmPasswordError.textContent = 'Пароли не совпадают';
         confirmPasswordError.style.display = 'block';
@@ -100,5 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
         confirmPasswordError.textContent = '';
         confirmPasswordError.style.display = 'none';
     }
+    return isValid;
  }
  
