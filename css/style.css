@@ -69,6 +69,10 @@ input:focus {
   display: none;
 }
 
+.registration-form__error, .form-control__error {
+  max-width: 300px;
+}
+
 .registration-form__submit {
   width: 50%;
   padding: 10px;
@@ -91,7 +95,12 @@ input:focus {
   color: rgb(123, 70, 188);
 }
  
-.checkbox-view {
+.registration-form__submit:active {
+  background-color: #8a1fdc;
+  transform: scale(0.98);
+}
+
+/*.checkbox {
   display: inline-block;
   align-items: center;
   justify-content: center;
@@ -99,12 +108,24 @@ input:focus {
   height: 24px;
   margin-right: 0px;
   border-radius: 6px;
-  background: rgb(211, 188, 238) url('/images/icon1.png') no-repeat center center;
+  background: rgb(209, 183, 238) url('/images/icon1.png') no-repeat center center;
   background-size: contain;
   transition: .3s;
- }
+ }*/
+
+ .checkbox {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 0.05em;
+  background-color: rgb(243, 240, 242);
+  box-shadow: 0 0 0 0.1em #4A90E2;
+  margin-left: -1.2em;
+  }
  
- .registration-form__checkbox {
+ /*.registration-form__checkbox {
   position: absolute;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -112,8 +133,8 @@ input:focus {
 }
 
 .registration-form__checkbox:checked + .checkbox-view {
-  background: url('./images/check.png');
-}
+  /*background: url('./images/check.png');
+}*/
 
 @media (min-width: 770px) {
   .body {
