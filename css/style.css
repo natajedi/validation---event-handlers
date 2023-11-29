@@ -53,7 +53,7 @@ body.wrapper {
 }
 
 input:focus {
-  background-color: rgb(255, 255, 255); 
+  background-color: rgb(248, 241, 248); 
 }
 
 .registration-form__error {
@@ -100,42 +100,31 @@ input:focus {
   transform: scale(0.98);
 }
 
-/*.checkbox {
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  margin-right: 0px;
-  border-radius: 6px;
-  background: rgb(209, 183, 238) url('/images/icon1.png') no-repeat center center;
-  background-size: contain;
-  transition: .3s;
- }*/
-
- .checkbox {
-  display: inline-block;
-  align-items: center;
-  justify-content: center;
-  width: 0.6em;
-  height: 0.6em;
-  border-radius: 0.05em;
-  background-color: rgb(243, 240, 242);
-  box-shadow: 0 0 0 0.1em #4A90E2;
-  margin-left: -1.2em;
-  }
- 
- /*.registration-form__checkbox {
-  position: absolute;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+.registration-form__checkbox {
+  appearance: none; 
+  width: 20px; 
+  height: 20px; 
+  background-image: url('../images/icon1.png'); 
+  background-position: center;
+  background-size: contain; 
+  border: 1px solid #e6d7f166; 
+  border-radius: 5px; 
 }
-
-.registration-form__checkbox:checked + .checkbox-view {
-  /*background: url('./images/check.png');
-}*/
-
+   
+.registration-form__checkbox:checked {
+  background: #fafafa; 
+}
+   
+.registration-form__checkbox:checked:after {
+  content: ""; 
+  display: block; 
+  width: 20px; 
+  height: 20px; 
+  background-image: url('../images/check.png'); 
+  background-position: center;
+  background-size: contain; 
+}
+  
 @media (min-width: 770px) {
   .body {
       font-size: 16px;
