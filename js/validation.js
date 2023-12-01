@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let fullName = document.getElementById('fullName');
     let password = document.getElementById('password');
     let confirmPassword = document.getElementById('confirmPassword');
+    let agree = document.getElementById('agree');
  
     let emailError = createErrorElement(email);
     let fullNameError = createErrorElement(fullName);
@@ -27,7 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Заполните все поля');
         isValid = false;
     }
- 
+    
+     if (!agree.checked) {
+       alert('Вы должны подтвердить, что хотите зарегистрироваться');
+       isValid = false;
+    }
+     
     if (isValid) {
         localStorage.setItem('email', email.value);
         localStorage.setItem('fullName', fullName.value);
