@@ -19,10 +19,19 @@ document.addEventListener('DOMContentLoaded', function() {
     let passwordError = createErrorElement(password);
     let confirmPasswordError = createErrorElement(confirmPassword);
  
+    emailError.textContent = '';
     let isValid = validateEmail(email, emailError);
+
+    fullNameError.textContent = '';
     isValid = validateFullName(fullName, fullNameError) && isValid;
+
+    passwordError.textContent = '';
     isValid = validatePassword(password, passwordError) && isValid;
-    isValid = validateConfirmPassword(password, confirmPassword, confirmPasswordError) && isValid;
+
+    if (email.value !== '' && fullName.value !== '' && password.value !== '' && confirmPassword.value !== '') {
+        confirmPasswordError.textContent = '';
+        isValid = validateConfirmPassword(password, confirmPassword, confirmPasswordError) && isValid;
+    }
  
     if (email.value === '' || fullName.value === '' || password.value === '' || confirmPassword.value === '') {
         alert('Заполните все поля');
@@ -56,12 +65,15 @@ document.addEventListener('DOMContentLoaded', function() {
  }
  
  function createErrorElement(element) {
-    let errorElement = document.createElement('div');
-    errorElement.className = 'form-control__error';
-    element.parentNode.insertBefore(errorElement, element.nextSibling);
-    return errorElement;
+   let errorElement = element.nextElementSibling;
+   if (!errorElement || !errorElement.classList.contains('form-control__error')) {
+       errorElement = document.createElement('div');
+       errorElement.className = 'form-control__error';
+       element.parentNode.insertBefore(errorElement, element.nextSibling);
+   }
+   return errorElement;
  }
- 
+
  function validateEmail(email, emailError) {
     let isValid = true;
     if (!email.validity.valid) {
